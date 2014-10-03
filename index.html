@@ -13,7 +13,14 @@
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			document.body.appendChild(renderer.domElement);
 
-			var boxWidth = (window.innerWidth / 20);
+
+			var boxWidth = (window.innerWidth / (20 * 100));
+			var boxMargin = boxWidth * 1.5;
+			var screenwidth = window.innerWidth;
+
+
+			console.log('boxWidth: ' + (window.innerWidth / (20 * 100)));
+
 			var boxHeight = [0.3, 0.2, 0.7, 0.1, 0.3, 0.2, 0.7, 0.1, 0.3, 0.2, 0.7, 0.1, 0.3, 0.2, 0.7, 0.1, 0.3, 0.2, 0.7, 0.1];
       // array som bestämer height på Boxarna, värdena ska komma ifrån FFTn
 			
@@ -23,17 +30,15 @@
 
 			for(var i = 0; i < 20; i++){
 
-				//var geometry = new THREE.BoxGeometry(boxWidth - 100 ,boxHeight - 100,1);
-				var geometry = new THREE.BoxGeometry(0.2 , boxHeight[i] , 0);
+				var geometry = new THREE.BoxGeometry(boxWidth ,boxHeight[i] ,0);
+				//var geometry = new THREE.BoxGeometry(0.2 , boxHeight[i] , 0);
 				var material = new THREE.MeshBasicMaterial({color: boxColor[i]});
 				var cube = new THREE.Mesh(geometry, material);
 				
-				if(i < 10)
-					cube.position.x = -i;
+				cube.position.x = -(screenwidth *0.006) + i*boxWidth*boxMargin;
+				console.log('cube position: ' + (screenwidth *0.005) + 10*i*boxWidth*boxMargin + ' cube index: ' + i);
 
-				else 
-					cube.position.x = i -9; // funkar tills vidare men de måste plaseras med avseende på window.innerWidth och så att första hamnar längst till vänster och sista till höger.
-
+		
 				scene.add(cube);
 			}
 
