@@ -1,7 +1,6 @@
 {
   "AppDescription": {
-    "en": "Description of My Boilerplate App",
-
+    "en": "En app för gabbi att testa grejer"
   },
   "AppIcon": {
     "18x18": "images/icons/icon-18x18.png",
@@ -12,25 +11,22 @@
     "300x300": "images/icons/icon-300x300.png"
   },
   "AppName": {
-    "en": "My Boilerplate App",
-
+    "en": "Gabbis testapp"
   },
-  "BundleIdentifier": "boilerplate-app",
+  "BundleIdentifier": "test-app",
   "BundleType": "Application",
   "BundleVersion": "0.0.1",
   "Dependencies": {
-    "api": "1.0.0",
-    "views": "1.10.0"
-  },
+    "api": "1.0.0"
+ },
   "RequiredPermissions": [
-    "https://api.mygreatapp.com"
   ],
   "SupportedDeviceClasses": [
     "Web",
     "Desktop"
   ],
   "SupportedLanguages": [
-    "en",
+    "en"
   ],
-  "VendorIdentifier": "com.myorganization"
+  "VendorIdentifier": "nf.co.gabriellarydenfors"
 }

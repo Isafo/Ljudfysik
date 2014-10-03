@@ -24,12 +24,12 @@ require([
 				}
 				scaledSpectrum[i] = band / bandsPerScaledBand; // normaliserar bandet och lägger in i vår array
 			}
-			// här ska jag sicka arrayen scaledSpectrum[] till isabell
+			// här ska jag sicka arrayen scaledSpectrum[] till isabelle
 		}
 
 		else {
 			//pjs.updateData(data.audio.spectrum.left);
-			// här ska jag sicka arrayen data.audio.spectrum.left till isabell
+			// här ska jag sicka arrayen data.audio.spectrum.left till isabelle
 		}
 	});
 };
