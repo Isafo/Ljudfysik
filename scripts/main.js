@@ -8,7 +8,6 @@ require([
 	});
 
 var boxHeight = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
-
 var cube = [];
 
 function startGL(audioExample){
@@ -23,6 +22,7 @@ function startGL(audioExample){
 			var boxWidth = (window.innerWidth / (22 * 100));
 			var boxMargin = boxWidth * 2;
 			var screenwidth = window.innerWidth;
+			var maxHeight = window.innerHeight / 2;
      	 	var boxColor = [0xff0000, 0xff2500, 0xff5000, 0xff7500, 0xffaa00, 0xffff00, 0xaaff00, 0x75ff00, 0x50ff00, 0x25ff00, 0x00ff00, 0x00ff25, 0x00ff50, 0x00ff75, 0x00ffaa, 0x00ffff, 0x00aaff, 0x0075ff, 0x0050ff, 0x0025ff]; //färgkodade enligt box 0 till höger och box 20 till vänster
 
 			for(var i = 0; i < 20; i++){
@@ -33,10 +33,10 @@ function startGL(audioExample){
 				
 				cube[i].position.x = -(screenwidth * 0.0048) + i*boxWidth*boxMargin;
 				console.log('cube position: ' + (screenwidth *0.0006) + 10*i*boxWidth*boxMargin + ' cube index: ' + i);
-
 		
 				scene.add(cube[i]);
 			}
+
 
 
 			console.log(cube[0]);
@@ -50,7 +50,7 @@ function startGL(audioExample){
 				requestAnimationFrame(render);
 				renderer.render(scene, camera);
 			};
-
+			
 			render();
 		}
 
