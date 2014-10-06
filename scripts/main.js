@@ -31,7 +31,7 @@ function startGL(audioExample){
 				var material = new THREE.MeshBasicMaterial({color: boxColor[i]});
 				cube[i] = new THREE.Mesh(geometry, material);
 				
-				cube[i].position.x = -(screenwidth * 0.009) + i*boxWidth*boxMargin;
+				cube[i].position.x = -(screenwidth * 0.0048) + i*boxWidth*boxMargin;
 				console.log('cube position: ' + (screenwidth *0.0006) + 10*i*boxWidth*boxMargin + ' cube index: ' + i);
 
 		
