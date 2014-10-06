@@ -28,13 +28,13 @@ function startGL(audioExample){
 
 				var geometry = new THREE.BoxGeometry(boxWidth , 0.2 ,0);
 				var material = new THREE.MeshBasicMaterial({color: boxColor[i]});
-				var cube = new THREE.Mesh(geometry, material);
+				var cube[i] = new THREE.Mesh(geometry, material);
 				
 				cube.position.x = -(screenwidth * 0.009) + i*boxWidth*boxMargin;
 				console.log('cube position: ' + (screenwidth *0.0006) + 10*i*boxWidth*boxMargin + ' cube index: ' + i);
 
 		
-				scene.add(cube);
+				scene.add(cube[i]);
 			}
 
 
