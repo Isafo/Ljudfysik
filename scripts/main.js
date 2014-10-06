@@ -7,7 +7,7 @@ require([
   startGL(audioExample);
 	});
 
-var boxHeight[];
+var boxHeight;
 var cube = [];
 
 function startGL(audioExample){
