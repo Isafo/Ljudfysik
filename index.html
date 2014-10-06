@@ -14,8 +14,8 @@
 			document.body.appendChild(renderer.domElement);
 
 
-			var boxWidth = (window.innerWidth / (20 * 100));
-			var boxMargin = boxWidth * 1.5;
+			var boxWidth = (window.innerWidth / (22 * 100));
+			var boxMargin = boxWidth * 1.4;
 			var screenwidth = window.innerWidth;
 
 
@@ -35,7 +35,7 @@
 				var material = new THREE.MeshBasicMaterial({color: boxColor[i]});
 				var cube = new THREE.Mesh(geometry, material);
 				
-				cube.position.x = -(screenwidth *0.006) + i*boxWidth*boxMargin;
+				cube.position.x = -(screenwidth *0.0046) + i*boxWidth*boxMargin;
 				console.log('cube position: ' + (screenwidth *0.005) + 10*i*boxWidth*boxMargin + ' cube index: ' + i);
 
 		
