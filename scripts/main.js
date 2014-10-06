@@ -7,7 +7,8 @@ require([
   startGL(audioExample);
 	});
 
-var boxHeight;
+var boxHeight = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
+
 var cube = [];
 
 function startGL(audioExample){
@@ -28,9 +29,9 @@ function startGL(audioExample){
 
 				var geometry = new THREE.BoxGeometry(boxWidth , 0.2 ,0);
 				var material = new THREE.MeshBasicMaterial({color: boxColor[i]});
-				var cube[i] = new THREE.Mesh(geometry, material);
+				cube[i] = new THREE.Mesh(geometry, material);
 				
-				cube.position.x = -(screenwidth * 0.009) + i*boxWidth*boxMargin;
+				cube[i].position.x = -(screenwidth * 0.009) + i*boxWidth*boxMargin;
 				console.log('cube position: ' + (screenwidth *0.0006) + 10*i*boxWidth*boxMargin + ' cube index: ' + i);
 
 		
@@ -43,6 +44,7 @@ function startGL(audioExample){
 
 			var render = function () {
 				for(var i = 0; i < 20; i++){
+					//console.log("boxHeight: " + boxHeight);
 					cube[i].scale.y = Math.abs(boxHeight[i]);
 				}
 				requestAnimationFrame(render);
@@ -54,5 +56,5 @@ function startGL(audioExample){
 
 function changeBoxHeight(heightArray){
 	console.log("Change!");
-	boxHeight2 = heightArray;
+	boxHeight = heightArray;
 }
