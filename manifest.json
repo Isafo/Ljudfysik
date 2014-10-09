@@ -11,9 +11,9 @@
     "300x300": "images/icons/icon-300x300.png"
   },
   "AppName": {
-    "en": "Gabbis testapp"
+    "en": "Sound visualizer"
   },
-  "BundleIdentifier": "test-app",
+  "BundleIdentifier": "ljudfysik",
   "BundleType": "Application",
   "BundleVersion": "0.0.1",
   "Dependencies": {
