@@ -27,7 +27,7 @@ require([
 		}
 
 		// normaliserar bandet mellan 0 och 30 och lägger in i vår array 
-		var ratio = Math.max.apply( Math, scaledSpectrum)/70; // ratio är maxvärdet 			
+		var ratio = Math.max.apply( Math, scaledSpectrum)/60; // ratio är maxvärdet 			
 		for (var k = 0; k < 31; k++)
 		{
 			scaledSpectrum[k] = scaledSpectrum[k]/ ratio;
