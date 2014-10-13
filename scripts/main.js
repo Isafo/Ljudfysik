@@ -55,6 +55,6 @@ function startGL(audioExample){
 		}
 
 function changeBoxHeight(heightArray){
-	console.log("Change!" + heightArray );
+	//console.log("Change!" + heightArray );
 	boxHeight = heightArray;
 }
