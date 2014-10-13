@@ -5,40 +5,36 @@ require([
   'use strict';
 
   var startFFT = function() {  
-  	// hämtar ljudet i realtid
+  	// hämtar ljudet i realtid, audio.BAND31 ser till att vi får frekvensspectrat indelat i 31 st delband som är lagon anpassade för visualisering
 	var analyzer = audio.RealtimeAnalyzer.forPlayer(models.player, audio.BAND31);
 	
 	//varje gång en ny buffert av ljud är redo kommer denna funktion att kalllas med ljuddatat.
 	analyzer.addEventListener('audio', function(data){
 
-		// Arrayen data.audio.spectrum.left innehåller frekvenserna i ljudet
+		// Arrayen data.audio.spectrum.left innehåller frekvenserna i ljudet som spelas ur den vänstra högtalaren
+		//console.log("data.audio.spectrum.left " + data.audio.spectrum.left);  // ser hur ljudet representeras
+		var scaledSpectrum = [];  // vår array med 31 delband från frekvensbandet
 
-		//Eftersom frekvenserna är uppdelade på 511 band och vi bara vill ha 20st, så måste vi skala om dem så att de hamnar i en array på 20 element
-		console.log(data); //här ser vi att antalet är 511
-		console.log(data.audio.spectrum.left); 
- 			var bandsPerScaledBand = Math.floor(data.audio.spectrum.left.length / 31);  // antalet mindre band som hamnar i de 20 banden vi vill representera
- 			console.log("bandsPerScaledBand: " + bandsPerScaledBand);
-			var scaledSpectrum = [];  // vår array med band
-			for(var i = 0; i < 31; i++){
-				var band = 0.;  // ett band i vår array
-				for(var j = 0; j < bandsPerScaledBand; j++){
-					// data.audio.spectrum.left ger värden mellan 0 och -96 därför gör jag en ful lösning och skriver såhär för att få en korekt representation mellan 0 och 96.
-					band += 96 - Math.abs(data.audio.spectrum.left[(i * bandsPerScaledBand) + j]);
-				}
-				scaledSpectrum[i] = band / bandsPerScaledBand; 
-			}
-			//console.log("band innan " + scaledSpectrum); 
-			// normaliserar bandet mellan 0 och 30 och lägger in i vår array 
-			var ratio = 96/30; // 95 är maxvärdet 
+		for(var i = 0; i < 31; i++){			
+			// data.audio.spectrum.left ger värden mellan ? och -96 därför gör jag en ful lösning och skriver såhär för att få en korekt representation med positiva tal.				
+			// scaledSpectrum[i] =  96 - Math.abs(data.audio.spectrum.left[i]);
+			/*if (data.audio.spectrum.left[i] >= 0) {scaledSpectrum[i] = 96 + data.audio.spectrum.left[i]; } // om talen är possitiva
+				else {scaledSpectrum[i] =  96 - Math.abs(data.audio.spectrum.left[i]);} */
+			if (data.audio.spectrum.left[i] >= 0) {scaledSpectrum[i] = 96 + data.audio.spectrum.left[i] } // om talen är possitiva 
+			else if(86 - Math.abs(data.audio.spectrum.left[i]) > 0){scaledSpectrum[i] =  86 - Math.abs(data.audio.spectrum.left[i]);} // om talen är neggativa + brusredusering
+			else {scaledSpectrum[i] =  0.000001;} // om talen är -95 så får inte värdet vara 0 ty då får vi problem med renderingen 
+			
+		}
 
-			//console.log("Max värde " + ratio); 
-			for (var k = 0; k < 31; k++)
-			{
-				scaledSpectrum[k] = scaledSpectrum[k]/ ratio;
-			}
-			//console.log("band efter " + scaledSpectrum); 
-			// här ska jag sicka arrayen scaledSpectrum[] till isabelle
-			changeBoxHeight(scaledSpectrum);
+		// normaliserar bandet mellan 0 och 30 och lägger in i vår array 
+		var ratio = Math.max.apply( Math, scaledSpectrum)/30; // ratio är maxvärdet 			
+		for (var k = 0; k < 31; k++)
+		{
+			scaledSpectrum[k] = scaledSpectrum[k]/ ratio;
+		}
+
+		// här ska jag sicka arrayen scaledSpectrum[] till renderingen
+		changeBoxHeight(scaledSpectrum);
 	});
 };
 
