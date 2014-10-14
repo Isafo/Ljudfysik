@@ -17,13 +17,9 @@ require([
 
 		for(var i = 0; i < 31; i++){			
 			// data.audio.spectrum.left ger värden mellan ? och -96 därför gör jag en ful lösning och skriver såhär för att få en korekt representation med positiva tal.				
-			// scaledSpectrum[i] =  96 - Math.abs(data.audio.spectrum.left[i]);
-			/*if (data.audio.spectrum.left[i] >= 0) {scaledSpectrum[i] = 96 + data.audio.spectrum.left[i]; } // om talen är possitiva
-				else {scaledSpectrum[i] =  96 - Math.abs(data.audio.spectrum.left[i]);} */
 			if (data.audio.spectrum.left[i] >= 0) {scaledSpectrum[i] = 96 + data.audio.spectrum.left[i] } // om talen är possitiva 
 			else if(86 - Math.abs(data.audio.spectrum.left[i]) > 0){scaledSpectrum[i] =  86 - Math.abs(data.audio.spectrum.left[i]);} // om talen är neggativa + brusredusering
-			else {scaledSpectrum[i] =  0.000001;} // om talen är -95 så får inte värdet vara 0 ty då får vi problem med renderingen 
-			
+			else {scaledSpectrum[i] =  0.000001;} // om talen är -95 så får inte värdet vara 0 ty då får vi problem med renderingen 		
 		}
 
 		// normaliserar bandet mellan 0 och 30 och lägger in i vår array 
